@@ -1,11 +1,5 @@
 """
----
-title: Train a Vision Transformer (ViT) on CIFAR 10
-summary: >
-  Train a Vision Transformer (ViT) on CIFAR 10
----
-
-#  Train a [Vision Transformer (ViT)](index.html) on CIFAR 10
+Train a Vision Transformer (ViT) on CIFAR 10
 """
 
 from labml import experiment
@@ -16,14 +10,10 @@ from labml_nn.transformers import TransformerConfigs
 
 class Configs(CIFAR10Configs):
     """
-    ## Configurations
-
-    We use [`CIFAR10Configs`](../../experiments/cifar10.html) which defines all the
-    dataset related configurations, optimizer, and a training loop.
+    Configurations
     """
 
-    # [Transformer configurations](../configs.html#TransformerConfigs)
-    # to get [transformer layer](../models.html#TransformerLayer)
+    #Transformer configurations
     transformer: TransformerConfigs
 
     # Size of a patch
@@ -45,12 +35,12 @@ def _transformer():
 @option(Configs.model)
 def _vit(c: Configs):
     """
-    ### Create model
+    #Create model
     """
     from labml_nn.transformers.vit import VisionTransformer, LearnedPositionalEmbeddings, ClassificationHead, \
         PatchEmbeddings
 
-    # Transformer size from [Transformer configurations](../configs.html#TransformerConfigs)
+    # Transformer size from Transformer configurations
     d_model = c.transformer.d_model
     # Create a vision transformer
     return VisionTransformer(c.transformer.encoder_layer, c.transformer.n_layers,
@@ -89,6 +79,6 @@ def main():
         conf.run()
 
 
-#
+# Run the experiment
 if __name__ == '__main__':
     main()
